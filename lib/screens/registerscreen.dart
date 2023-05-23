@@ -118,12 +118,17 @@ class _registerscreenState extends State<registerscreen> {
                                   'email':email,
                                   'contact':phno,
                                 };
-                              await dbref.push().set(user);
                               var newuser=await _auth.createUserWithEmailAndPassword(email: email, password: password);
                               if(newuser!=null){
+                                await dbref.push().set(user);
                                 Navigator.pushNamed(context, 'welcome');
                               }
                               }catch(e){
+                                final snackbar=SnackBar(content: Text(e.toString(),
+                                ),
+                                action: SnackBarAction(label: 'ok', onPressed: (){}),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(snackbar);
                                 print(e);
                               }
                               setState(() {

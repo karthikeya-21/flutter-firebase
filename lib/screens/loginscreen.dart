@@ -79,9 +79,25 @@ class _loginscreenState extends State<loginscreen> {
                             setState(() {
                               showSpinner=true;
                             });
-                            final user=await _auth.signInWithEmailAndPassword(email: email, password: password);
-                            if(user!=null){
-                              Navigator.pushNamed(context, 'welcome');
+                            try {
+                              final user = await _auth
+                                  .signInWithEmailAndPassword(
+                                  email: email, password: password);
+                              if (user != null) {
+                                Navigator.pushNamed(context, 'welcome');
+                              }
+                            }catch(e) {
+                              setState(() {
+                                showSpinner = false;
+                              });
+                              final Snackbar=SnackBar(content: Text(e.toString(),
+                              ),
+                                padding: EdgeInsets.all(20.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(Snackbar);
                             }
                             setState(() {
                               showSpinner=false;

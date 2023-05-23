@@ -62,7 +62,8 @@ class _welcomescreenState extends State<welcomescreen> {
             backgroundColor: Colors.transparent,
             body: showSpinner?null:Container(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.4, left: 80),
+                  top: MediaQuery.of(context).size.height * 0.4,
+                  left: MediaQuery.of(context).size.width*0.1),
               child: Column(
                 children: [
                   Text(
@@ -70,8 +71,7 @@ class _welcomescreenState extends State<welcomescreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                    ),
+                      fontSize: 35,                    ),
                   ),
                   SizedBox(height: 10,),
                   Text('Your Email is $email',style: TextStyle(
